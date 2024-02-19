@@ -1,6 +1,6 @@
-#KERENIFY 
-Kerenkan hidupmu 
-Kelompok Keren 
+# PlanAhead
+Planning menjadi mudah 
+Kelompok Random 
 Ketua Kelompok: 
 Anggota 1: 
 Anggota 2: 
