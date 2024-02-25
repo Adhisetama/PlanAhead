@@ -55,11 +55,25 @@ Kami menggunakan metodologi SDLC Scrum. Kami menggunakan metode ini karena fleks
   * Mendeteksi adanya konflik dan penyesuaian perubahan jadwal 
 
 **Use case diagram**
+![use case](images/use-case.png)
 
 **Functional Requirements**
+* Register account : Pengguna dapat membuat akun pada aplikasi agar dapat menyimpan data pengguna
+* Login : Pengguna dapat masuk menggunakan account yang telah didaftarkan dan menyinkronkan data pengguna
+* Manajemen Agenda : Pengguna dapat menambahkan, mengedit, dan menghapus agenda yang ada yang kemudian akan dicek konflik yang mungkin terjadi
+* Manajemen Proyek : Pengguna dapat menambahkan, mengedit, dan menghapus proyek yang ada, setiap proyek di dalamnya terdapat agenda-agenda yang kemudian akan dicek konflik yang mungkin terjadi
+* Memilih rekomendasi jadwal : Pengguna dapat memilih pilihan alternatif jadwal yang diberikan 
+* Rombak jadwal : Pengguna dapat merombak seluruh jadwal yang ada 
 
 **Entity Relationship Diagram**
+![erd](images/erd.png)
 
 **Low-Fi Wireframe**
+![lo-fi](images/lofi-1.png)
+![lo-fi](images/lofi-2.png)
+![lo-fi](images/lofi-3.png)
+![lo-fi](images/lofi-4.png)
+![lo-fi](images/lofi-5.png)
 
 **Gantt-Chart pengerjaan proyek dalam kurun waktu 1 semester**
+![grantt-chart](images/grantt-chart.png)
