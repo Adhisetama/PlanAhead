@@ -16,7 +16,17 @@
   }
 }
 
+html {
+  background-color: var(--color-white-100);
+  scroll-behavior: smooth;
+}
+
 body {
+  color: var(--color-black-900);
+  font-family: var(--font-inter);
+}
+
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,7 +34,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
 
 @layer utilities {
   .text-balance {
