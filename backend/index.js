@@ -1,30 +1,27 @@
-const express = require('express'); 
-  
-const app = express(); 
-const PORT = 3000; 
-  
-app.get('/', (req, res)=>{ 
-    res.status(200); 
-    res.send("Welcome to root URL of Server. Yey bisa!"); 
-}); 
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const userRoutes = require('./routes/user.routes');
+const proyekRoutes = require('./routes/proyek.routes');
+const agendaRoutes = require('./routes/agenda.routes');
+const jadwalRoutes = require('./routes/jadwal.routes');
 
-app.get('/hello', (req, res)=>{ 
-    res.set('Content-Type', 'text/html'); 
-    res.status(200).send("<h1>First Header of the App!</h1>");
-}); 
+// Middleware
+app.use(bodyParser.json());
 
-//post command
-app.use(express.json()); 
-app.post('/post', (req, res)=>{ 
-    const {name} = req.body; 
-      
-    res.send(`Welcome ${name}`); 
-}) 
+// Routes
+app.use('/api', userRoutes);
+app.use('/api', proyekRoutes);
+app.use('/api', agendaRoutes);
+app.use('/api', jadwalRoutes);
 
-app.listen(PORT, (err) =>{
-    if(!err) 
-        console.log("Server is Successfully Running, and App is listening on port "+ PORT) 
-    else 
-        console.log("Error occurred, server can't start", error); 
-    } 
-); 
+// Default route
+app.get('/', (req, res) => {
+  res.send('Welcome to the backend server!');
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
