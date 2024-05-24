@@ -14,11 +14,11 @@ return (
                 />
             </div>
             <p>
-                Here to help you to manage your plans!
+                Here to help you managing your plans!
             </p>
             <div className="border-t border-white flex my-4 mx-0"></div>
             <p>
-                Â©2024 PlanAhead
+                PlanAhead ©2024 
             </p>
             </div>
         </div>
