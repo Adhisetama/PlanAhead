@@ -1,4 +1,4 @@
-const themes = [
+const theme = [
     {
       name: "default",
       colorBg: "#252525",
@@ -128,4 +128,4 @@ const themes = [
       marLRSm: "0 1rem",
     },
   ];
-  export default themes;
+  export default theme;
