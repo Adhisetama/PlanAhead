@@ -8,6 +8,7 @@ import TaskItem from "../components/TaskItem";
 import { plus } from "../app/utils/Icons";
 
 import theme from "../app/context/theme"
+import Modal from "./Modals/Modal";
 
 interface Props {
     title: string;
@@ -15,18 +16,12 @@ interface Props {
 }
 
 function Tasks({ title, tasks }: Props) {
-    const { theme } = useGlobalState();
-
-    // const tasks = [
-    //     { title: 'Task 1', description: 'This is the first task.' },
-    //     { title: 'Task 2', description: 'This is the second task.' },
-    //     { title: 'Task 3', description: 'This is the third task.' },
-    //     // Add more tasks as needed
-    // ];
+    const { theme, openModal, modal } = useGlobalState();
 
   return (
     <TaskStyled theme={theme}>
-      {/* <CreateContent/> */}
+      {modal && <Modal content={<CreateContent/>} />}
+
       <h1>{title}</h1>
       <div className="tasks grid">
       {tasks.map((task) => (
@@ -39,21 +34,12 @@ function Tasks({ title, tasks }: Props) {
             id={task.id}
           />
         ))}
-        <button className="create-task">
+        <button className="create-task" onClick={openModal}>
           {plus}
           Add New Task
         </button>
       </div>
     </TaskStyled>
-
-    //     <TaskStyled theme={theme}>
-    //     {tasks.map((task, index) => (
-    //         <TaskCard key={index} theme={theme}>
-    //             <h3>{task.title}</h3>
-    //             <p>{task.description}</p>
-    //         </TaskCard>
-    //     ))}
-    // </TaskStyled>
   );
 };
 

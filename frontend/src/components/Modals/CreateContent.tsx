@@ -3,7 +3,7 @@ import React, {useState} from "react";
 
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { useGlobalState } from "../../app/context/globalProvider";
 
 function CreateContent() {
     const [title, setTitle] = useState("");
@@ -11,6 +11,8 @@ function CreateContent() {
     const [date, setDate] = useState("");
     const [completed, setCompleted] = useState(false);
     const [important, setImportant] = useState(false);
+
+    const { theme, allTasks, closeModal } = useGlobalState();
 
     const handleChange = (name: string) => (e: any) => {
         switch (name) {
@@ -64,12 +66,12 @@ function CreateContent() {
         <h1>Create a Task</h1>
         <div className="input-control">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" value={title} name="title" onChange={handleChange("title")} placeholder="placeholder"/>
+            <input type="text" id="title" value={title} name="title" onChange={handleChange("title")} placeholder="Title"/>
         </div>
 
         <div className="input-control">
             <label htmlFor="description">Description</label>
-            <textarea id="description" value={description} name="description" onChange={handleChange("description")} placeholder="placeholder"></textarea>
+            <textarea id="description" value={description} name="description" onChange={handleChange("description")} placeholder="Description"></textarea>
         </div>
 
         <div className="input-control">

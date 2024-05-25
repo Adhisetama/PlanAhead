@@ -13,7 +13,8 @@ const theme = [
       colorTextLight: "#f8f8f8",
       colorbackground: "#FBFBFD",
       colorGradient: "linear-gradient(110.42deg, #CF57A3 29.2%, #4731B6 63.56%)",
-      colorGreenDark: "#27AE60",
+
+      colorOrange: "#FEA82F",
       colorGreenLight: "#dbe1e8",
       activeNavLink: "rgba(249,249,249, 0.08)",
       activeNavLinkHover: "rgba(249,249,249, 0.03)",
@@ -59,7 +60,7 @@ const theme = [
       colorTextLight: "#f8f8f8",
       colorbackground: "#FBFBFD",
       colorGradient: "linear-gradient(110.42deg, #CF57A3 29.2%, #4731B6 63.56%)",
-      colorGreenDark: "#27AE60",
+      colorOrange: "#27AE60",
       colorGreenLight: "#dbe1e8",
       activeNavLink: "rgba(230,230,230, .87)",
       activeNavLinkHover: "#C5C5C5",

@@ -13,6 +13,16 @@ export const GlobalProvider = ({ children }) => {
 
     const [tasks, setTasks] = useState([]);
 
+    const [modal, setModal] = useState(false);
+
+    const openModal = (key) => {
+        setModal(true);
+    };
+
+    const closeModal = () => {
+        setModal(false);
+    };
+
     const allTasks = async () => {
         setIsLoading(true);
         try {
@@ -35,12 +45,15 @@ export const GlobalProvider = ({ children }) => {
         value={{
             theme,
             tasks,
+            openModal,
+            closeModal,
+            modal,
         }}>
             <GlobalUpdateContext.Provider value={{}}>
                 {children}
             </GlobalUpdateContext.Provider>
         </GlobalContext.Provider>
-    )
+    );
 };
 
 export const useGlobalState = () => useContext(GlobalContext);
