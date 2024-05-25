@@ -5,6 +5,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useGlobalState } from "../../app/context/globalProvider";
 
+import styled from 'styled-components';
+
 function CreateContent() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -62,7 +64,8 @@ function CreateContent() {
         }
     }
 
-    return <form onSubmit={handleSubmit}>
+    return ( 
+    <CreateContentStyled onSubmit={handleSubmit} theme={theme}>
         <h1>Create a Task</h1>
         <div className="input-control">
             <label htmlFor="title">Title</label>
@@ -94,7 +97,49 @@ function CreateContent() {
                 <span>Submit</span>
             </button>
         </div>
-    </form>
+    </CreateContentStyled>
+    );
 }
+
+const CreateContentStyled = styled.form`
+> h1 {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    font-weight: 600;
+  }
+
+  
+  border-radius: ${(props) => props.theme.borderRadiusMd2};
+  color: ${(props) => props.theme.colorGrey1};
+
+  .input-control {
+    position: relative;
+    margin: 1.6rem 0;
+    font-weight: 500;
+
+    label {
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        font-size: clamp(0.9rem, 5vw, 1.2rem);
+  
+        span {
+          color: ${(props) => props.theme.colorGrey3};
+        }
+      }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem;
+
+      resize: none;
+      background-color: ${(props) => props.theme.colorGreyDark};
+      color: ${(props) => props.theme.colorGrey2};
+      border-radius: 0.5rem;
+    }
+
+  }
+
+
+`;
 
 export default CreateContent;
