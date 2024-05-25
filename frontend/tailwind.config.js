@@ -7,6 +7,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+
+      fontFamily: {
+        inter: ["Inter", "sans"],
+        josefin: ["Josefin Sans", "sans"],
+      },
+
+      colors: {
+        'custBlack': '#071E22',
+        'custWhite': '#FFFFFF',
+        'custOrange': '#FEA82F',
+        'custYellow': '#F9C222',
+        'custBrown': '#935A48',
+      },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
