@@ -111,15 +111,15 @@ function CreateContent() {
             <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
         </div>
 
-        <div className="input-control">
+        <div className="input-control toggler">
             <label htmlFor="repeatable">Toggle Repeatable</label>
             <input type="checkbox" id="repeatable" value={repeatable.toString()} name="repeatable" onChange={handleChange("repeatable")}/>
         </div>
 
-        <div className="input-control toggler">
+        {/* <div className="input-control toggler">
             <label htmlFor="important">Toggle Important</label>
             <input type="checkbox" id="important" value={important.toString()} name="important" onChange={handleChange("important")}/>
-        </div>
+        </div> */}
 
         <div className="submit-btn flex justify-end">
             <Button 
@@ -173,6 +173,22 @@ const CreateContentStyled = styled.form`
       border-radius: 0.5rem;
     }
 
+  }
+
+  .toggler {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    label {
+      flex: 1;
+    }
+
+    input {
+      width: initial;
+    }
   }
 
 `;

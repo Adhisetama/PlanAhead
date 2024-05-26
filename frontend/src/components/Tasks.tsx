@@ -65,18 +65,6 @@ const TaskStyled = styled.div`
       font-weight: 800;
       position: relative;
     }
-
-    
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      width: 3rem;
-      height: 0.2rem;
-      background-color: ${(props) => props.theme.colorPrimaryGreen};
-      border-radius: 0.5rem;
-    }
     
     .create-task {
       display: flex;
@@ -85,6 +73,10 @@ const TaskStyled = styled.div`
       gap: 0.5rem;
   
       height: 16rem;
+      width: 350px;
+
+      margin: 1rem;
+
       color: ${(props) => props.theme.colorGrey2};
       font-weight: 600;
       cursor: pointer;
