@@ -13,32 +13,42 @@ import { plus } from "../../app/utils/Icons";
 function CreateContent() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+
     const [date, setDate] = useState("");
-    const [completed, setCompleted] = useState(false);
+    const [date2, setDate2] = useState("");
+    const [date3, setDate3] = useState("");
+
+    const [repeatable, setRepeatable] = useState(false);
     const [important, setImportant] = useState(false);
 
     const { theme, allTasks, closeModal } = useGlobalState();
 
     const handleChange = (name: string) => (e: any) => {
-        switch (name) {
-          case "title":
-            setTitle(e.target.value);
-            break;
-          case "description":
-            setDescription(e.target.value);
-            break;
-          case "date":
-            setDate(e.target.value);
-            break;
-          case "completed":
-            setCompleted(e.target.checked);
-            break;
-          case "important":
-            setImportant(e.target.checked);
-            break;
-          default:
-            break;
-        }
+      switch (name) {
+        case "title":
+          setTitle(e.target.value);
+          break;
+        case "description":
+          setDescription(e.target.value);
+          break;
+        case "date":
+          setDate(e.target.value);
+          break;
+        case "date2":
+          setDate2(e.target.value);
+          break;
+        case "date3":
+          setDate3(e.target.value);
+          break;
+        case "repeatable":
+          setRepeatable(e.target.checked);
+          break;
+        case "important":
+          setImportant(e.target.checked);
+          break;
+        default:
+          break;
+      }
     };
 
     const handleSubmit = async (e: any) => {
@@ -48,7 +58,9 @@ function CreateContent() {
             title,
             description,
             date,
-            completed,
+            date2,
+            date3,
+            repeatable,
             important,
         };
 
@@ -73,7 +85,7 @@ function CreateContent() {
 
     return ( 
     <CreateContentStyled onSubmit={handleSubmit} theme={theme}>
-        <h1>Create a Task</h1>
+        <h1>Create an Agenda</h1>
         <div className="input-control">
             <label htmlFor="title">Title</label>
             <input type="text" id="title" value={title} name="title" onChange={handleChange("title")} placeholder="Title"/>
@@ -86,12 +98,22 @@ function CreateContent() {
 
         <div className="input-control">
             <label htmlFor="date">Date</label>
-            <input type="date" id="date" value={date} name="date" onChange={handleChange("date")}/>
+            <input type="datetime-local" id="date" value={date} name="date" onChange={handleChange("date")}/>
         </div>
 
         <div className="input-control">
-            <label htmlFor="completed">Toggle Completed</label>
-            <input type="checkbox" id="completed" value={completed.toString()} name="completed" onChange={handleChange("completed")}/>
+            <label htmlFor="date2">Backup Date 1</label>
+            <input type="datetime-local" id="date2" value={date2} name="date2" onChange={handleChange("date2")}/>
+        </div>
+
+        <div className="input-control">
+            <label htmlFor="date">Backup Date2</label>
+            <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
+        </div>
+
+        <div className="input-control">
+            <label htmlFor="repeatable">Toggle Repeatable</label>
+            <input type="checkbox" id="repeatable" value={repeatable.toString()} name="repeatable" onChange={handleChange("repeatable")}/>
         </div>
 
         <div className="input-control toggler">
@@ -127,7 +149,7 @@ const CreateContentStyled = styled.form`
 
   .input-control {
     position: relative;
-    margin: 1.6rem 0;
+    margin: 0.5rem 0;
     font-weight: 500;
 
     label {
@@ -143,7 +165,7 @@ const CreateContentStyled = styled.form`
     input,
     textarea {
       width: 100%;
-      padding: 1rem;
+      padding: 0.5rem;
 
       resize: none;
       background-color: ${(props) => props.theme.colorGreyDark};

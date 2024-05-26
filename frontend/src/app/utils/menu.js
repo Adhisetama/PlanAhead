@@ -15,9 +15,9 @@ const menu = [
   },
   {
     id: 3,
-    title: "Completed!",
+    title: "Repeatable!",
     icon: check,
-    link: "/completed",
+    link: "/repeatable",
   },
   // {
   //   id: 4,

@@ -30,7 +30,9 @@ function Tasks({ title, tasks }: Props) {
             title={task.title}
             description={task.description}
             date={task.date}
-            isCompleted={task.isCompleted}
+            date2={task.date2}
+            date3={task.date3}
+            isRepeatable={task.isRepeatable}
             id={task.id}
           />
         ))}
@@ -103,24 +105,5 @@ const TaskStyled = styled.div`
     }
 `;
 
-// const TaskCard = styled.div`
-//     background-color: ${(props) => props.theme.cardBg};
-//     border: 1px solid ${(props) => props.theme.cardBorderColor};
-//     border-radius: 0.5rem;
-//     padding: 1rem;
-//     margin-bottom: 1rem;
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-//     h3 {
-//         margin: 0;
-//         font-size: 1.5rem;
-//         color: ${(props) => props.theme.textColor};
-//     }
-
-//     p {
-//         margin: 0.5rem 0 0;
-//         color: ${(props) => props.theme.textColorSecondary};
-//     }
-// `;
 
 export default Tasks

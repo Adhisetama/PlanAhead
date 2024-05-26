@@ -4,9 +4,9 @@ import prisma from "../../utils/connect";
 
 export async function POST(req: Request) {
   try {
-    const { title, description, date, completed, important } = await req.json();
+    const { title, description, date, date2, date3, repeatable } = await req.json();
 
-    if (!title || !description || !date) {
+    if (!title || !description || !date ) {
         return NextResponse.json({error: "Missing required fields", status: 400,});
     }
 
@@ -15,8 +15,7 @@ export async function POST(req: Request) {
             title,
             description,
             date,
-            isCompleted: completed,
-            isImportant: important,
+            isRepeatable: repeatable,
         },
     });
     console.log('TASK CREATED: ', task);
