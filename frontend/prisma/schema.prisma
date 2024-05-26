@@ -13,13 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
 model Task {
   id            String       @id @default(cuid()) @map("_id")
-  title         String  
+  title         String
   description   String?
   date          String
-  isCompleted   Boolean   @default(false)
-  isImportant   Boolean   @default(false)
-  createdAt     DateTime  @default(now())      @map("created_at")
-  updatedAt     DateTime  @default(now())      @updatedAt @map("updated_at")
+  date2         String?
+  date3         String?
+  isRepeatable  Boolean      @default(false)
+  priority      Priority     @default(MEDIUM)
+  createdAt     DateTime     @default(now())     @map("created_at")
+  updatedAt     DateTime     @default(now())     @updatedAt @map("updated_at")
 }

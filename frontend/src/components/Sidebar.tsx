@@ -24,7 +24,7 @@ function Sidebar() {
   return (
     <SidebarStyled theme={theme}>
       <h1>
-        <p>nama orang</p>
+        <p>PlanAhead!</p>
       </h1>
 
     <ul className="nav-items">
@@ -55,13 +55,17 @@ const SidebarStyled = styled.nav`
   border: 2px solid ${(props) => props.theme.borderColor2};
   border-radius: 1rem;
 
+  font-weight: 500;
+
+  align-items: center;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   .nav-items{
     position: relative;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem 1rem 1rem 1rem;
     margin: 1rem 0;
     gap: 1rem;
 

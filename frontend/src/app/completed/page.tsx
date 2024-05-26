@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
 
-function Completed() {
+function Repeatable() {
   return (
-    <div>This is the Completed page</div>
+    <div>This is the Repeatable page</div>
   )
 }
 
-export default Completed
+export default Repeatable

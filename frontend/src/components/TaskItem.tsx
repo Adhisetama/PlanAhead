@@ -4,18 +4,20 @@ import React from "react";
 import { edit, trash } from "../app/utils/Icons";
 import { useGlobalState } from "../app/context/globalProvider";
 import styled from "styled-components";
-import formatDate from "../app/utils/formatDate"
+import formatDate from "../app/utils/formatDate/formatDate"
 import theme from "../app/context/theme"
 
 interface Props {
     title: string;
     description: string;
     date: string;
-    isCompleted: boolean;
+    date2: string;
+    date3: string
+    isRepeatable: boolean;
     id: string;
 }
 
-function TaskItem({ title, description, date, isCompleted, id }: Props) {
+function TaskItem({ title, description, date, date2, date3, isRepeatable, id }: Props) {
     const { theme, deleteTask} = useGlobalState();
   return (
     <TaskItemStyled theme={theme}>
@@ -25,8 +27,8 @@ function TaskItem({ title, description, date, isCompleted, id }: Props) {
         {formatDate(date)}
       </p>
       <div className="task-footer">
-      {isCompleted ? (
-      <button className='completed'>Completed</button>) : (<button className="incomplete">"Not Complete!"</button>)}
+      {isRepeatable ? (
+      <button className='repeatable'>Repeatable</button>) : (<button className="incomplete">Non Repeatable</button>)}
       <button className='delete' onClick={() => {
         deleteTask(id);
       }}>{trash}</button>
@@ -75,7 +77,7 @@ const TaskItemStyled = styled.div`
       margin-left: auto;
     }
 
-    .completed,
+    .repeatable,
     .incomplete {
       display: inline-block;
       padding: 0.4rem 1rem;
@@ -83,7 +85,7 @@ const TaskItemStyled = styled.div`
       border-radius: 30px;
     }
 
-    .completed {
+    .repeatable {
       background: ${(props) => props.theme.colorOrange} !important;
     }
   
