@@ -23,7 +23,7 @@ function Sidebar() {
 
   return (
     <SidebarStyled theme={theme}>
-      <h1>
+      <h1 className="planAhead-title">
         <p>PlanAhead!</p>
       </h1>
 
@@ -62,6 +62,13 @@ const SidebarStyled = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .planAhead-title{
+    margin-top: 30px;
+    font-weight: 1000;
+    font-size: 24px;
+    
+  }
 
   .nav-items{
     position: relative;

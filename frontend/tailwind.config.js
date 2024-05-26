@@ -8,11 +8,6 @@ module.exports = {
   theme: {
     extend: {
 
-      fontFamily: {
-        inter: ["Inter", "sans"],
-        josefin: ["Josefin Sans", "sans"],
-      },
-
       colors: {
         'custBlack': '#071E22',
         'custWhite': '#FFFFFF',

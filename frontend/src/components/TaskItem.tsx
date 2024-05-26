@@ -19,75 +19,113 @@ interface Props {
 
 function TaskItem({ title, description, date, date2, date3, isRepeatable, id }: Props) {
     const { theme, deleteTask} = useGlobalState();
+
   return (
     <TaskItemStyled theme={theme}>
-      <h1>{title}</h1>
-      <p>{description}</p>
-      <p className='date'>
-        {formatDate(date)}
-      </p>
-      <div className="task-footer">
+      <h1 className="title">{title}</h1>
+      <p className="description">{description}</p>
+
       {isRepeatable ? (
-      <button className='repeatable'>Repeatable</button>) : (<button className="incomplete">Non Repeatable</button>)}
-      <button className='delete' onClick={() => {
-        deleteTask(id);
-      }}>{trash}</button>
+        <p className="repeatable">Repeatable</p>
+      ) : (
+        <p className="nonRepeatable">Non Repeatable</p>
+      )}
+
+      <div className="task-footer">
+        <p className="date">{formatDate(date)}</p>
+
+        <button
+          className="delete"
+          onClick={() => {
+            deleteTask(id);
+          }}
+        >
+          {trash}
+        </button>
       </div>
     </TaskItemStyled>
   );
 }
 
 const TaskItemStyled = styled.div`
-  padding: 1.2rem 1rem;
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 1.5rem;
+
+  flex-direction: column;
+  justify-content: space-between;
+
   border-radius: 1rem;
   background-color: ${(props) => props.theme.borderColor2};
   box-shadow: ${(props) => props.theme.shadow7};
   border: 2px solid ${(props) => props.theme.borderColor2};
 
   height: 16rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  width: 350px;
+  gap: 0.8rem;
 
-  .date{
-    margin-top: auto;
+  .title{
+    font-size: 28px;
   }
 
+  .description{
+    color: ${(props) => props.theme.colorTextSecondary};
+    font-size: 20px;
+  }
+
+  .repeatable,
+  .nonRepeatable {
+    color: ${(props) => props.theme.colorGrey3};
+    border-radius: 30px;
+    margin-top: 2rem;
+
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  .repeatable {
+    color: ${(props) => props.theme.colorPrimaryGreen} !important;
+  }
+
+  .delete{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  
   > h1 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 1000;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    i {
+      font-size: 1.8rem;
+      color: ${(props) => props.theme.colorDanger};
+    }
   }
 
   .task-footer {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
 
-    button {
-      border: none;
-      outline: none;
-      cursor: pointer;
+  }
 
-      i {
-        font-size: 1.4rem;
-        color: ${(props) => props.theme.colorGrey2};
-      }
-    }
-
-    .edit {
-      margin-left: auto;
-    }
-
-    .repeatable,
-    .incomplete {
-      display: inline-block;
-      padding: 0.4rem 1rem;
-      background: ${(props) => props.theme.colorDanger};
-      border-radius: 30px;
-    }
-
-    .repeatable {
-      background: ${(props) => props.theme.colorOrange} !important;
-    }
+  .date{
+    background: ${(props) => props.theme.colorOrange} !important;
+    border-radius: 15px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+  }
   
 `;
 

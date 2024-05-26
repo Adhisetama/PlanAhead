@@ -85,7 +85,7 @@ function CreateContent() {
 
     return ( 
     <CreateContentStyled onSubmit={handleSubmit} theme={theme}>
-        <h1>Create an Agenda</h1>
+        <h1 className="pop-up-title">Create an Agenda</h1>
         <div className="input-control">
             <label htmlFor="title">Title</label>
             <input type="text" id="title" value={title} name="title" onChange={handleChange("title")} placeholder="Title"/>
@@ -107,19 +107,19 @@ function CreateContent() {
         </div>
 
         <div className="input-control">
-            <label htmlFor="date">Backup Date2</label>
+            <label htmlFor="date3">Backup Date2</label>
             <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
         </div>
 
-        <div className="input-control">
+        <div className="input-control toggler">
             <label htmlFor="repeatable">Toggle Repeatable</label>
             <input type="checkbox" id="repeatable" value={repeatable.toString()} name="repeatable" onChange={handleChange("repeatable")}/>
         </div>
 
-        <div className="input-control toggler">
+        {/* <div className="input-control toggler">
             <label htmlFor="important">Toggle Important</label>
             <input type="checkbox" id="important" value={important.toString()} name="important" onChange={handleChange("important")}/>
-        </div>
+        </div> */}
 
         <div className="submit-btn flex justify-end">
             <Button 
@@ -146,6 +146,10 @@ const CreateContentStyled = styled.form`
   
   border-radius: ${(props) => props.theme.borderRadiusMd2};
   color: ${(props) => props.theme.colorGrey1};
+
+  .pop-up-title{
+    color: ${(props) => props.theme.colorYellow};
+  }
 
   .input-control {
     position: relative;
@@ -174,6 +178,24 @@ const CreateContentStyled = styled.form`
     }
 
   }
+
+  .toggler {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    label {
+      flex: 1;
+    }
+
+    input {
+      width: initial;
+    }
+  }
+
+
 
 `;
 
