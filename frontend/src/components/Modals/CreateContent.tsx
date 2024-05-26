@@ -85,7 +85,7 @@ function CreateContent() {
 
     return ( 
     <CreateContentStyled onSubmit={handleSubmit} theme={theme}>
-        <h1>Create an Agenda</h1>
+        <h1 className="pop-up-title">Create an Agenda</h1>
         <div className="input-control">
             <label htmlFor="title">Title</label>
             <input type="text" id="title" value={title} name="title" onChange={handleChange("title")} placeholder="Title"/>
@@ -107,7 +107,7 @@ function CreateContent() {
         </div>
 
         <div className="input-control">
-            <label htmlFor="date">Backup Date2</label>
+            <label htmlFor="date3">Backup Date2</label>
             <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
         </div>
 
@@ -146,6 +146,10 @@ const CreateContentStyled = styled.form`
   
   border-radius: ${(props) => props.theme.borderRadiusMd2};
   color: ${(props) => props.theme.colorGrey1};
+
+  .pop-up-title{
+    color: ${(props) => props.theme.colorYellow};
+  }
 
   .input-control {
     position: relative;
@@ -190,6 +194,8 @@ const CreateContentStyled = styled.form`
       width: initial;
     }
   }
+
+
 
 `;
 
