@@ -5,7 +5,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useGlobalState } from "../../app/context/globalProvider";
 
+import Button from "../Button/Button";
 import styled from 'styled-components';
+import { plus } from "../../app/utils/Icons";
+
 
 function CreateContent() {
     const [title, setTitle] = useState("");
@@ -56,7 +59,11 @@ function CreateContent() {
                 toast.error(res.data.error);
             }
 
-            toast.success("Task created!!!");
+            if(!res.data.error){
+                toast.success("Agenda created!!!");
+                allTasks();
+                closeModal();
+            }
 
         }catch(error){
             toast.error("Something went wrong.");
@@ -92,10 +99,17 @@ function CreateContent() {
             <input type="checkbox" id="important" value={important.toString()} name="important" onChange={handleChange("important")}/>
         </div>
 
-        <div className="submit-btn">
-            <button type="submit">
-                <span>Submit</span>
-            </button>
+        <div className="submit-btn flex justify-end">
+            <Button 
+            type="submit"
+            name="Create Agenda"
+            icon={plus}
+            padding={"1rem 1rem"}
+            borderRad={"0.8rem"}
+            fw={"800"}
+            fs={"1rem"}
+            background={theme.colorOrange}
+            />
         </div>
     </CreateContentStyled>
     );
@@ -138,7 +152,6 @@ const CreateContentStyled = styled.form`
     }
 
   }
-
 
 `;
 

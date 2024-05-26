@@ -2,6 +2,7 @@
 import React, { createContext, useState, useContext } from "react";
 import themes from "./theme"
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const GlobalContext = createContext();
 export const GlobalUpdateContext = createContext();
@@ -35,6 +36,18 @@ export const GlobalProvider = ({ children }) => {
         }
     };
 
+    const deleteTask = async (id) => {
+        try {
+            const res = await axios.delete(`/api/tasks/${id}`);
+            toast.success("Task Deleted!");
+
+            allTasks();
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went wrong");
+        }
+    }
+
     React.useEffect(() => {
         allTasks();
     }, []);
@@ -48,6 +61,9 @@ export const GlobalProvider = ({ children }) => {
             openModal,
             closeModal,
             modal,
+            allTasks,
+            deleteTask,
+            isLoading,
         }}>
             <GlobalUpdateContext.Provider value={{}}>
                 {children}
