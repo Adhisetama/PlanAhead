@@ -15,6 +15,8 @@ export async function POST(req: Request) {
             title,
             description,
             date,
+            date2,
+            date3,
             isRepeatable: repeatable,
         },
     });
@@ -32,7 +34,7 @@ export async function GET(req: Request) {
     //di sini ada auth user kalo make user
 
     const tasks = await prisma.task.findMany();
-    console.log("TASKS: ", tasks)
+    console.log("AGENDA APA AJA: ", tasks)
     return NextResponse.json(tasks)
 
   } catch (error) {
