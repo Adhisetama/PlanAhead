@@ -4,8 +4,6 @@ import styled from "styled-components";
 import Link from 'next/link';
 import { useGlobalState } from "../app/context/globalProvider";
 
-import Image from "next/image";
-
 import menu from "../app/utils/menu";
 import {usePathname, useRouter} from "next/navigation";
 

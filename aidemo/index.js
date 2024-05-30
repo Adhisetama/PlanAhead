@@ -38,7 +38,9 @@ class Scheduler
         return false
     }
 
+  
     static queryTimeSlot(agendas, durationMinutes, startsFrom=false, hourRange={ from: 7, to: 2, range: 5 }, daysToSearch=7) {
+
         const ONE_MINUTE = 60000;
         const ONE_DAY = 86400000;
         
