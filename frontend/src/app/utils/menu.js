@@ -15,16 +15,16 @@ const menu = [
   },
   {
     id: 3,
-    title: "Repeatable!",
+    title: "Repeatable",
     icon: check,
     link: "/repeatable",
   },
-  // {
-  //   id: 4,
-  //   title: "Do It Now",
-  //   icon: todo,
-  //   link: "/incomplete",
-  // },
+  {
+    id: 4,
+    title: "Completed!",
+    icon: todo,
+    link: "/completed",
+  },
 ];
 
 export default menu;

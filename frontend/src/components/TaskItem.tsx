@@ -5,25 +5,47 @@ import { edit, trash } from "../app/utils/Icons";
 import { useGlobalState } from "../app/context/globalProvider";
 import styled from "styled-components";
 import formatDate from "../app/utils/formatDate/formatDate"
+import { TaskData } from "./Tasks"
 import theme from "../app/context/theme"
 
-interface Props {
-    title: string;
-    description: string;
-    date: string;
-    date2: string;
-    date3: string
-    isRepeatable: boolean;
-    id: string;
-}
+// interface Props {
+//     title: string;
+//     description: string;
+//     date: string;
+//     date2: string;
+//     date3: string;
+//     isCompleted: boolean;
+//     isRepeatable: boolean;
+//     id: string;
+// }
 
-function TaskItem({ title, description, date, date2, date3, isRepeatable, id }: Props) {
-    const { theme, deleteTask} = useGlobalState();
+// function TaskItem({ title, description, date, date2, date3, isCompleted, isRepeatable, id }: Props) {
+//     const { theme, deleteTask} = useGlobalState();
+
+interface TaskItemProps extends TaskData {}
+
+const TaskItem: React.FC<TaskItemProps> = ({
+  title,
+  description,
+  date,
+  date2,
+  date3,
+  isCompleted,
+  isRepeatable,
+  id,
+}) => {
+  const { theme, deleteTask } = useGlobalState();
 
   return (
     <TaskItemStyled theme={theme}>
       <h1 className="title">{title}</h1>
       <p className="description">{description}</p>
+
+      {isCompleted ? (
+        <p className="completed">Completed</p>
+      ) : (
+        <p className="notCompleted">Not Completed</p>
+      )}
 
       {isRepeatable ? (
         <p className="repeatable">Repeatable</p>
@@ -74,11 +96,25 @@ const TaskItemStyled = styled.div`
     font-size: 20px;
   }
 
+  .completed,
+  .notCompleted {
+    color: ${(props) => props.theme.colorGrey3};
+    border-radius: 30px;
+    // margin-top: 2rem;
+
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  .completed {
+    color: ${(props) => props.theme.colorPrimaryGreen} !important;
+  }
+
   .repeatable,
   .nonRepeatable {
     color: ${(props) => props.theme.colorGrey3};
     border-radius: 30px;
-    margin-top: 2rem;
+    // margin-top: 2rem;
 
     font-size: 16px;
     text-decoration: underline;
