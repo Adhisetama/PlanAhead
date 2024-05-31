@@ -10,9 +10,21 @@ import { plus } from "../app/utils/Icons";
 import theme from "../app/context/theme"
 import Modal from "./Modals/Modal";
 
+export interface TaskData {
+  title: string;
+  description: string;
+  date: string;
+  date2: string;
+  date3: string;
+  isCompleted: boolean;
+  isRepeatable: boolean;
+  id: string;
+}
+
+
 interface Props {
     title: string;
-    tasks: any[];
+    tasks: TaskData[];
 }
 
 function Tasks({ title, tasks }: Props) {
@@ -32,6 +44,7 @@ function Tasks({ title, tasks }: Props) {
             date={task.date}
             date2={task.date2}
             date3={task.date3}
+            isCompleted={task.isCompleted}
             isRepeatable={task.isRepeatable}
             id={task.id}
           />

@@ -18,6 +18,7 @@ function CreateContent() {
     const [date2, setDate2] = useState("");
     const [date3, setDate3] = useState("");
 
+    const [completed, setCompleted] = useState(false);
     const [repeatable, setRepeatable] = useState(false);
     const [important, setImportant] = useState(false);
 
@@ -40,6 +41,8 @@ function CreateContent() {
         case "date3":
           setDate3(e.target.value);
           break;
+        case "completed":
+          setCompleted(e.target.checked);
         case "repeatable":
           setRepeatable(e.target.checked);
           break;
@@ -60,6 +63,7 @@ function CreateContent() {
             date,
             date2,
             date3,
+            completed,
             repeatable,
             important,
         };
@@ -83,6 +87,7 @@ function CreateContent() {
         }
     }
 
+    //ini bagian pop up create agenda
     return ( 
     <CreateContentStyled onSubmit={handleSubmit} theme={theme}>
         <h1 className="pop-up-title">Create an Agenda</h1>
@@ -109,6 +114,11 @@ function CreateContent() {
         <div className="input-control">
             <label htmlFor="date3">Backup Date2</label>
             <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
+        </div>
+
+        <div className="input-control toggler">
+            <label htmlFor="completed">Toggle Completed</label>
+            <input type="checkbox" id="completed" value={completed.toString()} name="completed" onChange={handleChange("completed")}/>
         </div>
 
         <div className="input-control toggler">
