@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import themes from "./theme"
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -48,6 +48,16 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    const toggleTaskCompletion = async (id, isCompleted) => {
+        try {
+          const res = await axios.put(`/api/tasks/${id}`, { isCompleted });
+          toast.success("Task Updated!");
+          allTasks();
+        } catch (error) {
+          console.log(error);
+          toast.error("Something went wrong");
+        }
+      };
     React.useEffect(() => {
         allTasks();
     }, []);
@@ -63,6 +73,7 @@ export const GlobalProvider = ({ children }) => {
             modal,
             allTasks,
             deleteTask,
+            toggleTaskCompletion,
             isLoading,
         }}>
             <GlobalUpdateContext.Provider value={{}}>
