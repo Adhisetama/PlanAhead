@@ -116,10 +116,10 @@ function CreateContent() {
             <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
         </div>
 
-        <div className="input-control toggler">
+        {/* <div className="input-control toggler">
             <label htmlFor="completed">Toggle Completed</label>
             <input type="checkbox" id="completed" value={completed.toString()} name="completed" onChange={handleChange("completed")}/>
-        </div>
+        </div> */}
 
         <div className="input-control toggler">
             <label htmlFor="repeatable">Toggle Repeatable</label>
