@@ -1,14 +1,13 @@
 "use client"
 import React from 'react'
-import { useGlobalState } from "../app/context/globalProvider";
 import styled from 'styled-components';
 import CreateContent from './Modals/CreateContent';
 import TaskItem from "../components/TaskItem";
-
-import { plus } from "../app/utils/Icons";
-
-import theme from "../app/context/theme"
 import Modal from "./Modals/Modal";
+
+import { useGlobalState } from "../app/context/globalProvider";
+import { plus } from "../app/utils/Icons";
+import { Priority } from '@prisma/client';
 
 export interface TaskData {
   title: string;
@@ -18,6 +17,7 @@ export interface TaskData {
   date3: string;
   isCompleted: boolean;
   isRepeatable: boolean;
+  priority: Priority;
   id: string;
 }
 
@@ -46,6 +46,7 @@ function Tasks({ title, tasks }: Props) {
             date3={task.date3}
             isCompleted={task.isCompleted}
             isRepeatable={task.isRepeatable}
+            priority={task.priority}
             id={task.id}
           />
         ))}
