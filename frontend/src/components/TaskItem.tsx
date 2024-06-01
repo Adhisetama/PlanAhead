@@ -6,21 +6,6 @@ import { useGlobalState } from "../app/context/globalProvider";
 import styled from "styled-components";
 import formatDate from "../app/utils/formatDate/formatDate"
 import { TaskData } from "./Tasks"
-import theme from "../app/context/theme"
-
-// interface Props {
-//     title: string;
-//     description: string;
-//     date: string;
-//     date2: string;
-//     date3: string;
-//     isCompleted: boolean;
-//     isRepeatable: boolean;
-//     id: string;
-// }
-
-// function TaskItem({ title, description, date, date2, date3, isCompleted, isRepeatable, id }: Props) {
-//     const { theme, deleteTask} = useGlobalState();
 
 interface TaskItemProps extends TaskData {}
 

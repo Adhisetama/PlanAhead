@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import prisma from "../../utils/connect";
+import { Priority } from "@prisma/client";
 
 
 export async function POST(req: Request) {
   try {
-    const { title, description, date, date2, date3, repeatable } = await req.json();
+    const { title, description, date, date2, date3, repeatable, priority } = await req.json();
 
     if (!title || !description || !date) {
       return NextResponse.json({ error: "Missing required fields", status: 400 });
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
         date3,
         isCompleted: false,
         isRepeatable: repeatable,
+        priority,
       },
     });
 

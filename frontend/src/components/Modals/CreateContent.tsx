@@ -9,6 +9,8 @@ import Button from "../Button/Button";
 import styled from 'styled-components';
 import { plus } from "../../app/utils/Icons";
 
+import { $Enums } from '../../../node_modules/.prisma/client/index';
+
 
 function CreateContent() {
     const [title, setTitle] = useState("");
@@ -20,7 +22,7 @@ function CreateContent() {
 
     const [completed, setCompleted] = useState(false);
     const [repeatable, setRepeatable] = useState(false);
-    const [important, setImportant] = useState(false);
+    const [priority, setPriority] = useState("");
 
     const { theme, allTasks, closeModal } = useGlobalState();
 
@@ -46,8 +48,8 @@ function CreateContent() {
         case "repeatable":
           setRepeatable(e.target.checked);
           break;
-        case "important":
-          setImportant(e.target.checked);
+        case "priority":
+          setPriority(e.target.value);
           break;
         default:
           break;
@@ -65,7 +67,7 @@ function CreateContent() {
             date3,
             completed,
             repeatable,
-            important,
+            priority,
         };
 
         try {
@@ -116,20 +118,24 @@ function CreateContent() {
             <input type="datetime-local" id="date3" value={date3} name="date3" onChange={handleChange("date3")}/>
         </div>
 
-        {/* <div className="input-control toggler">
-            <label htmlFor="completed">Toggle Completed</label>
-            <input type="checkbox" id="completed" value={completed.toString()} name="completed" onChange={handleChange("completed")}/>
-        </div> */}
+
+        <div className="input-control toggler">
+            <label htmlFor="priority">Toggle Priority</label>
+            <select className="priority" id="priority" value={priority} name="priority" onChange={handleChange("priority")}> 
+              <option value="" disabled selected>
+                Select
+              </option>
+              <option value="LOW">Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+            </select>
+        </div>
+
 
         <div className="input-control toggler">
             <label htmlFor="repeatable">Toggle Repeatable</label>
             <input type="checkbox" id="repeatable" value={repeatable.toString()} name="repeatable" onChange={handleChange("repeatable")}/>
         </div>
-
-        {/* <div className="input-control toggler">
-            <label htmlFor="important">Toggle Important</label>
-            <input type="checkbox" id="important" value={important.toString()} name="important" onChange={handleChange("important")}/>
-        </div> */}
 
         <div className="submit-btn flex justify-end">
             <Button 
@@ -187,6 +193,12 @@ const CreateContentStyled = styled.form`
       border-radius: 0.5rem;
     }
 
+  }
+
+  .priority {
+    color: ${(props) => props.theme.colorOrange};
+    background-color: ${(props) => props.theme.colorGreyDark};
+    
   }
 
   .toggler {

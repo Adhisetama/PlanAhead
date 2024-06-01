@@ -2,22 +2,19 @@
 import React from "react";
 import styled from "styled-components";
 import Link from 'next/link';
-import { useGlobalState } from "../app/context/globalProvider";
-
 import menu from "../app/utils/menu";
+import { useGlobalState } from "../app/context/globalProvider";
 import {usePathname, useRouter} from "next/navigation";
 
 function Sidebar() {
   const { theme } = useGlobalState();
-  // console.log(theme);
 
   const router = useRouter();
   const pathname = usePathname();
-  
 
   const handleClick = (link: string) => {
     router.push(link);
-  }
+  };
 
   return (
     <SidebarStyled theme={theme}>
@@ -25,23 +22,25 @@ function Sidebar() {
         <p>PlanAhead!</p>
       </h1>
 
-    <ul className="nav-items">
+      <ul className="nav-items">
         {menu.map((item) => {
-
           const link = item.link;
 
-            return <li className={`nav-item ${pathname === link ? "active": ""}`} 
-            onClick={() => {
-              handleClick(link);
-            }}>
-                {item.icon}
-                <Link href= {link}>
-                    {item.title}
-                </Link>
+          return (
+            <li
+              key={item.id}
+              className={`nav-item ${pathname === link ? "active" : ""}`}
+              onClick={() => {
+                handleClick(link);
+              }}
+            >
+              {item.icon}
+              <Link href={link}>{item.title}</Link>
             </li>
+          );
         })}
-    </ul>
-        <div></div>
+      </ul>
+      <div></div>
     </SidebarStyled>
   );
 }
@@ -68,11 +67,66 @@ const SidebarStyled = styled.nav`
     
   }
 
-  .nav-items{
+  .nav-item{
     position: relative;
-    padding: 1rem 1rem 1rem 1rem;
-    margin: 1rem 0;
-    gap: 1rem;
+    padding: 0.6rem 1rem 1rem 1rem;
+    margin: 0.3rem 0;
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background-color: ${(props) => props.theme.activeNavLinkHover};
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      right: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background-color: ${(props) => props.theme.colorGreenDark};
+
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+
+    a {
+      font-weight: 500;
+      transition: all 0.3s ease-in-out;
+      z-index: 2;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+
+    i {
+      display: flex;
+      align-items: center;
+      color: ${(props) => props.theme.colorOrange};
+    }
+
+    .active {
+      background-color: ${(props) => props.theme.colorYellow};
+      i,
+      a {
+        color: ${(props) => props.theme.colorIcons2};
+      }
+    }
+
+  }
 
 `;
 export default Sidebar;
