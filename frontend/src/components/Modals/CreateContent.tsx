@@ -7,9 +7,12 @@ import { useGlobalState } from "../../app/context/globalProvider";
 
 import Button from "../Button/Button";
 import styled from 'styled-components';
-import { plus } from "../../app/utils/Icons";
+import { plus, sparkle } from "../../app/utils/Icons";
 
-import { $Enums } from '../../../node_modules/.prisma/client/index';
+import { SchedulerAI } from "../../app/utils/Scheduler";
+import formatDateForm from "../../app/utils/formatDate/formatDateForm";
+
+// import { $Enums } from '../../../node_modules/.prisma/client/index';
 
 
 function CreateContent() {
@@ -24,7 +27,7 @@ function CreateContent() {
     const [repeatable, setRepeatable] = useState(false);
     const [priority, setPriority] = useState("");
 
-    const { theme, allTasks, closeModal } = useGlobalState();
+    const { theme, allTasks, closeModal, tasks } = useGlobalState();
 
     const handleChange = (name: string) => (e: any) => {
       switch (name) {
@@ -55,6 +58,14 @@ function CreateContent() {
           break;
       }
     };
+
+    const recommendDateAI = () => {
+      console.log(tasks)
+      const { date, date2, date3 } = SchedulerAI.recommendDate(tasks);
+      setDate(formatDateForm(date));
+      setDate2(formatDateForm(date2));
+      setDate3(formatDateForm(date3));
+    }
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -137,17 +148,33 @@ function CreateContent() {
             <input type="checkbox" id="repeatable" value={repeatable.toString()} name="repeatable" onChange={handleChange("repeatable")}/>
         </div>
 
-        <div className="submit-btn flex justify-end">
-            <Button 
-            type="submit"
-            name="Create Agenda"
-            icon={plus}
-            padding={"1rem 1rem"}
-            borderRad={"0.8rem"}
-            fw={"800"}
-            fs={"1rem"}
-            background={theme.colorOrange}
-            />
+        <div className="flex justify-end">
+          <div className="submit-btn flex justify-start mr-4">
+              <Button 
+              type="button"
+              name="AI"
+              icon={sparkle}
+              padding={"1rem 1rem"}
+              borderRad={"0.8rem"}
+              fw={"800"}
+              fs={"1rem"}
+              background={theme.colorBrown}
+              click={recommendDateAI}
+              />
+          </div>
+
+          <div className="submit-btn flex justify-end">
+              <Button 
+              type="submit"
+              name="Create Agenda"
+              icon={plus}
+              padding={"1rem 1rem"}
+              borderRad={"0.8rem"}
+              fw={"800"}
+              fs={"1rem"}
+              background={theme.colorOrange}
+              />
+          </div>
         </div>
     </CreateContentStyled>
     );

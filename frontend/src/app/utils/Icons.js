@@ -19,3 +19,4 @@ export const todo = <i className="fa-solid fa-clipboard-list"></i>;
 export const trash = <i className="fa-solid fa-trash"></i>;
 
 export const plus = <i className="fa-solid fa-plus fa-beat-fade"></i>;
+export const sparkle = <i class="fa-solid fa-wand-magic-sparkles"></i>
