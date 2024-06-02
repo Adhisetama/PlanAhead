@@ -1,13 +1,19 @@
 "use client"
 import React from "react";
 import styled from "styled-components";
+import Image from 'next/image';
 import Link from 'next/link';
 import menu from "../app/utils/menu";
 import { useGlobalState } from "../app/context/globalProvider";
 import {usePathname, useRouter} from "next/navigation";
 
+import { SchedulerAI } from "../app/utils/Scheduler";
+import { sparkle } from "../app/utils/Icons";
+import Button from "./Button/Button";
+import formatDateForm from "../app/utils/formatDate/formatDateForm";
+
 function Sidebar() {
-  const { theme } = useGlobalState();
+  const { theme, tasks, updateTask, toggleTaskCompletion } = useGlobalState();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -15,6 +21,22 @@ function Sidebar() {
   const handleClick = (link: string) => {
     router.push(link);
   };
+
+  const fixSchedule = async () => {
+    const updatedTasks = SchedulerAI.scheduleTask(tasks)
+    const formattedUpdate = updatedTasks.map (t => ({id: t.id, date: formatDateForm(new Date(t.date)) }))
+    console.log(tasks)
+    console.log(formattedUpdate)
+    try {
+      for (const task of formattedUpdate) {
+        await updateTask(task.id, {
+          date: formatDateForm(new Date(task.date))
+        })
+      }
+    } catch (error) {
+      console.error("Error updating task date:", error);
+    }
+  }
 
   return (
     <SidebarStyled theme={theme}>
@@ -40,6 +62,37 @@ function Sidebar() {
           );
         })}
       </ul>
+      <div>
+        <div className="ml-10 mr-10">
+          <Image
+            src={SchedulerAI.checkOverlaps(tasks) ? "/bot-alert.png" : "/bot.png"}
+            width={360}
+            height={360}
+            alt="scheduler bot image"
+          />
+        </div>
+        <div>
+          {!SchedulerAI.checkOverlaps(tasks) ? (
+            <p className="text-center m-2">This schedule looks good!</p>
+          ) : (
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-center m-2 text-red-500">Theres conflicts in the schedule!</p>
+              <Button 
+                type="submit"
+                name="Fix"
+                icon={sparkle}
+                padding={"0.7rem 0.7rem"}
+                borderRad={"0.8rem"}
+                fw={"800"}
+                fs={"1rem"}
+                background={theme.colorBrown}
+                click={fixSchedule}
+              />
+            </div>
+          )}
+
+        </div>
+      </div>
       <div></div>
     </SidebarStyled>
   );

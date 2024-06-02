@@ -58,6 +58,18 @@ export const GlobalProvider = ({ children }) => {
           toast.error("Something went wrong");
         }
       };
+
+    const updateTask = async (id, updatedTask) => {
+        try {
+            const res = await axios.put(`/api/tasks/ai/${id}`, updatedTask);
+            toast.success("Task Updated!");
+            allTasks();
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong");
+        }
+    };
+
     React.useEffect(() => {
         allTasks();
     }, []);
@@ -74,6 +86,7 @@ export const GlobalProvider = ({ children }) => {
             allTasks,
             deleteTask,
             toggleTaskCompletion,
+            updateTask,
             isLoading,
         }}>
             <GlobalUpdateContext.Provider value={{}}>

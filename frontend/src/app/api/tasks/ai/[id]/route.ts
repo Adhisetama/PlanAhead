@@ -1,24 +1,6 @@
-import prisma from "../../../utils/connect";
+import prisma from "../../../../utils/connect";
 import { NextResponse } from "next/server";
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { id } = params;
-    const task = await prisma.task.delete({
-      where: {
-        id,
-      },
-    });
-
-    return NextResponse.json(task);
-  } catch (error) {
-    console.log("ERROR DELETING TASK: ", error);
-    return NextResponse.json({ error: "Error deleting task", status: 500 });
-  }
-}
 
 export async function PUT(
   req: Request,
@@ -28,8 +10,6 @@ export async function PUT(
     const { id } = params;
     const data = await req.json();
 
-    console.log("aaaaa:", data)
-  
     const task = await prisma.task.update({
       where: { id },
       data: data,
