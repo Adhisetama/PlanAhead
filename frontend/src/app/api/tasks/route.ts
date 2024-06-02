@@ -64,13 +64,13 @@ export async function GET(req: Request) {
   }
 }
 
-export async function UPDATE(req: Request) {
-  try {
-  } catch (error) {
-    console.log("ERROR UPDATING TASK: ", error);
-    return NextResponse.json({ error: "Error Creating Task", status: 501 });
-  }
-}
+// export async function UPDATE(req: Request) {
+//   try {
+//   } catch (error) {
+//     console.log("ERROR UPDATING TASK: ", error);
+//     return NextResponse.json({ error: "Error Creating Task", status: 501 });
+//   }
+// }
 
 export async function DELETE(req: Request) {
   try {
